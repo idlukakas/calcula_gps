@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calcula GPS</string>
+    <string name="action_settings">Configurações</string>
+    <string name="allow_gps_permission">Conceder permissão de GPS</string>
+    <string name="enable_gps">Ativar GPS</string>
+    <string name="disable_gps">Desativar GPS</string>
+    <string name="start_route">Iniciar Percurso</string>
+    <string name="stop_route">Terminar Percurso</string>
+    <string name="travelled_distance">Distância Percorrida</string>
+    <string name="past_time">Tempo Passado</string>
+    <string name="question_search_place">O que dejesa encontrar?</string>
+</resources>

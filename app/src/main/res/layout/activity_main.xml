@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintBottom_toTopOf="@+id/allowGpsPermissionButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <Button
+            android:id="@+id/allowGpsPermissionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/allow_gps_permission"
+            app:layout_constraintBottom_toTopOf="@+id/enableGpsButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+        <Button
+            android:id="@+id/enableGpsButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/enable_gps"
+            app:layout_constraintDimensionRatio="H,1:4"
+            app:layout_constraintBottom_toTopOf="@+id/disableGpsButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/allowGpsPermissionButton" />
+
+        <Button
+            android:id="@+id/disableGpsButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/disable_gps"
+            app:layout_constraintBottom_toTopOf="@+id/startRouteButton"
+            app:layout_constraintDimensionRatio="H,1:4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enableGpsButton" />
+
+        <Button
+            android:id="@+id/startRouteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/start_route"
+            android:onClick="startRouteButton"
+            app:layout_constraintBottom_toTopOf="@+id/stopRouteButton"
+            app:layout_constraintDimensionRatio="H,1:4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/disableGpsButton" />
+
+        <Button
+            android:id="@+id/stopRouteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/stop_route"
+            android:onClick="stopRouteButton"
+            app:layout_constraintBottom_toTopOf="@+id/travelledDistanceTextView"
+            app:layout_constraintDimensionRatio="H,1:4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startRouteButton" />
+
+        <TextView
+            android:id="@+id/travelledDistanceTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fab_margin"
+            android:text="@string/travelled_distance"
+            app:layout_constraintBottom_toTopOf="@+id/pastTimeTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stopRouteButton" />
+
+        <TextView
+            android:id="@+id/pastTimeTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fab_margin"
+            android:text="@string/past_time"
+            app:layout_constraintBottom_toTopOf="@+id/travelledDistanceResultTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/travelledDistanceTextView" />
+
+        <TextView
+            android:id="@+id/travelledDistanceResultTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fab_margin"
+            android:text="XXXX"
+            app:layout_constraintBottom_toTopOf="@+id/pastTimeChronometer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pastTimeTextView" />
+
+        <Chronometer
+            android:id="@+id/pastTimeChronometer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fab_margin"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/placeTextInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/travelledDistanceResultTextView" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/placeTextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pastTimeChronometer">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/placeTextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/question_search_place"
+                android:padding="@dimen/fab_margin" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        tools:srcCompat="@android:drawable/ic_menu_search" />
+
+</android.support.design.widget.CoordinatorLayout>
