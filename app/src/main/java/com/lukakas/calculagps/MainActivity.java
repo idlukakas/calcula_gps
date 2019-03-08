@@ -30,15 +30,15 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
+    private Location firstLocation;
 
-    private double latAtual, longAtual;
+    private double latInitial, longInitial, latAtual, longAtual;
 
     private TextView travelledDistanceResultTextView;
     private TextInputLayout placeTextInputLayout;
 
     private Chronometer pastTimeChronometer;
     private boolean running;
-    private long pauseOffset;
 
     private Button allowGpsPermissionButton;
     private Button enableGpsButton;
@@ -129,7 +129,32 @@ public class MainActivity extends AppCompatActivity {
         pastTimeChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
+                locationManager = (LocationManager)
+                        getSystemService(Context.LOCATION_SERVICE);
+                locationListener =
+                        new LocationListener() {
+                            @Override
+                            public void onLocationChanged(Location location) {
+                                float distance = location.distanceTo(firstLocation);
 
+                                travelledDistanceResultTextView.setText(Float.toString(distance));
+                            }
+
+                            @Override
+                            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+                            }
+
+                            @Override
+                            public void onProviderEnabled(String s) {
+
+                            }
+
+                            @Override
+                            public void onProviderDisabled(String s) {
+
+                            }
+                        };
             }
         });
 
@@ -163,15 +188,8 @@ public class MainActivity extends AppCompatActivity {
                 new LocationListener() {
                     @Override
                     public void onLocationChanged(Location location) {
-                        latAtual = location.getLatitude();
-                        longAtual = location.getLongitude();
-                        String exibir =
-                                String.format(
-                                        Locale.getDefault(),
-                                        "Lat%f, Long:%f",
-                                        latAtual,
-                                        longAtual
-                                );
+                        latInitial = location.getLatitude();
+                        longInitial = location.getLongitude();
                     }
 
                     @Override
@@ -194,6 +212,30 @@ public class MainActivity extends AppCompatActivity {
     public void startRouteButton(View v) {
         if (isLocationEnabled(this)) {
             if (!running) {
+                locationManager = (LocationManager)
+                        getSystemService(Context.LOCATION_SERVICE);
+                locationListener =
+                        new LocationListener() {
+                            @Override
+                            public void onLocationChanged(Location location) {
+                                firstLocation = location;
+                            }
+                            @Override
+                            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+                            }
+
+                            @Override
+                            public void onProviderEnabled(String s) {
+
+                            }
+
+                            @Override
+                            public void onProviderDisabled(String s) {
+
+                            }
+                        };
+
                 pastTimeChronometer.setBase(SystemClock.elapsedRealtime());
                 pastTimeChronometer.start();
                 running = true;
